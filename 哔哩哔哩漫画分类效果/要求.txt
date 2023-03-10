@@ -1,0 +1,20 @@
+实现哔哩哔哩漫画分类效果:
+1. 根据提供的AllLabel.js文件,渲染分类标签
+2. 点击不同的分类,可以查询对应的数据
+
+
+哔哩哔哩漫画分类效果参考地址: 
+https://manga.bilibili.com/classify?from=manga_homepage&styles=-1&areas=-1&status=-1&prices=-1&orders=0
+
+接口文档: 
+https://apis.netstart.cn/bcomic/#/?id=%e5%88%86%e7%b1%bb
+
+请求接口地址示例:
+https://apis.netstart.cn/bcomic/ClassPage
+
+https://apis.netstart.cn/bcomic/ClassPage?styleId=-1&areaId=-1&isFinish=-1&order=0&pageNum=1&pageSize=39&isFree=-1
+
+https://apis.netstart.cn/bcomic/ClassPage?styleId=999&areaId=-1&isFinish=-1&order=0&pageNum=1&pageSize=39&isFree=-
+
+漫画详情页地址:
+https://manga.bilibili.com/detail/mc26769?from=manga_index

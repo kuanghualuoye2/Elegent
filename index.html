@@ -1,110 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="referrer" content="no-referrer">
     <title>Document</title>
-    <script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="./view/style.css" />
-  </head>
-  <body>
-    <!-- <ul>
-    <li>全部</li>
-    <li>全部</li>
-    <li>全部</li>
-    <li>全部</li>
-</ul> -->
+    <script src="./js/AllLabel.js"></script>
+</head>
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
 
-    <section class="all-label"></section>
-    <ul class="list"></ul>
+    a {
+        text-decoration: none;
+        color: rgb(54, 54, 54);
+    }
 
+    * {
+        font-size: 12px;
+    }
+
+    .box {
+        width: 1500px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .box .left {
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        width: 50px;
+        color: rgb(157, 157, 157);
+    }
+
+    .box .left .list {
+        margin: 10px 0;
+    }
+
+    .box .right {
+        width: 90%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    /* .box .right .list {
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: rgb(74, 208, 253);
+    } */
+    .right .list1 div {
+        margin: 0 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        float: left;
+        cursor: pointer;
+    }
+
+    .right .list1 div.active {
+        background-color: rgb(74, 208, 253);
+    }
+
+    .content {
+        width: 1500px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .content div {
+        border-radius: 10px;
+        width: 180px;
+        height: 260px;
+        margin: 10px;
+        /* background-color: antiquewhite; */
+        background-image: url(./images/preview.jpeg);
+        background-size: cover;
+    }
+
+    .content div img {
+        display: block;
+        width: 100%;
+        height: 220px;
+    }
+
+    .content div p {
+        margin: 0;
+        margin-top: 10px;
+        font-size: 17px;
+        line-height: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .content div span {
+        color: rgb(107, 107, 107)
+    }
+
+    .content .no-find {
+        margin: 0 auto;
+        width: 500px;
+        height: 500px;
+    }
+
+    .content .no-find img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="left">
+            <div class="list">题材：</div>
+            <div class="list">地区：</div>
+            <div class="list">进度：</div>
+            <div class="list">收费：</div>
+            <div class="list">排序：</div>
+        </div>
+        <div class="right">
+            <ul class="list1">
+            </ul>
+            <ul class="list1">
+            </ul>
+            <ul class="list1">
+            </ul>
+            <ul class="list1">
+            </ul>
+            <ul class="list1">
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="no-find">
+            <img src="./images/no-find.png" alt="">
+        </div>
+    </div>
+    <script src="./js/jquery.min.js"></script>
     <script>
-      // console.log($);
-      //  测试参数
-      var query = {
-        styleId: -1,
-        areaId: -1,
-        isFinish: -1,
-        order: 0,
-        pageNum: 1,
-        pageSize: 39,
-        isFree: -1,
-      };
-
-      // 插入元素 name中文名, list数组, key查询的键名
-      function generateLabelList(name, list, key, value) {
-        // 渲染地区
-        var $ulDom = $("<ul></ul>");
-        $ulDom.append($("<li class='title'>" + name + "</li>"));
-        $ulDom.append(
-          $(
-            "<li class='active' data-id=" +
-              value +
-              " data-key=" +
-              key +
-              ">" +
-              "全部" +
-              "</li>"
-          )
-        );
-        list.forEach(function (element, index) {
-          $ulDom.append(
-            $(
-              "<li data-id=" +
-                element.id +
-                " data-key=" +
-                key +
-                ">" +
-                element.name +
-                "</li>"
-            )
-          );
-        });
-
-        // console.log($ulDom);
-        $("section.all-label").append($ulDom);
-      }
-
-      //   获取所有分类
-      $.get("https://apis.netstart.cn/bcomic/AllLabel", function (res) {
-        console.log(res.data);
-
-        // 生成多有的labels
-        generateLabelList("题材", res.data.styles, "styleId", -1);
-        generateLabelList("地区", res.data.areas, "areaId", -1);
-        generateLabelList("进度", res.data.status, "isFinish", -1);
-        generateLabelList("收费", res.data.prices, "isFree", -1);
-        generateLabelList("排序", res.data.orders, "order", 0);
-
-        // 给生成的li添加点击时间
-        $(".all-label ul li").click(function () {
-          //   console.log($(this).data("key"), $(this).data("id"));
-          query[$(this).data("key")] = $(this).data("id");
-
-          //   console.log(query);
-
-          //   $(this)自己添加高亮 兄弟取消高亮
-          $(this).addClass("active").siblings().removeClass("active");
-
-          $(".list").html("");
-          //  获取列表
-          $.get("https://apis.netstart.cn/bcomic/ClassPage", query, function (res) {
-            // console.log(res.data);
-            res.data.forEach(function (ele) {
-              $(".list").append("<li>" + ele.title + "</li>");
+        //渲染 AllLabel列表
+        var n = 0;
+        var n2 = 0;
+        for (const key in AllLabel) {
+            var str = "";
+            $(AllLabel[key]).each(function (index, item) {
+                console.log(index);
+                console.log(item);
+                if (item.id == -1) {
+                    str += "<div class='active'>" + item.name + "</div>"
+                } else {
+                    str += "<div>" + item.name + "</div>";
+                }
+                return str
             });
-          });
-        });
-      });
+            $(".box .right .list1").eq(n).html(str);
+            n++;
+        }
 
-      //  获取列表
-      $.get("https://apis.netstart.cn/bcomic/ClassPage", query, function (res) {
-        // console.log(res.data);
-        res.data.forEach(function (ele) {
-          $(".list").append("<li>" + ele.title + "</li>");
-        });
-      });
+
+
+
+        // $(".box .right").children().each(function (index) {
+        //     $(".box .right").children().eq(index).html(function () {
+        //         return AllLabel.styles.map(function (item) {
+        //             var str = "";
+        //             if (item.id == -1) {
+        //                 str += "<div class='active'>" + item.name + "</div>"
+        //             } else {
+        //                 str += "<div>" + item.name + "</div>";
+        //             }
+        //             return str
+        //         })
+        //     });
+        // })
+        // $(".box .right").children().eq(1).html(function () {
+        //     return AllLabel.areas.map(function (item) {
+        //         var str = "";
+        //         if (item.id == -1) {
+        //             str += "<div class='active'>" + item.name + "</div>"
+        //         } else {
+        //             str += "<div>" + item.name + "</div>";
+        //         }
+        //         return str
+        //     })
+        // });
+        // $(".box .right").children().eq(2).html(function () {
+        //     return AllLabel.status.map(function (item) {
+        //         var str = "";
+        //         if (item.id == -1) {
+        //             str += "<div class='active'>" + item.name + "</div>"
+        //         } else {
+        //             str += "<div>" + item.name + "</div>";
+        //         }
+        //         return str
+        //     })
+        // });
+        // $(".box .right").children().eq(3).html(function () {
+        //     return AllLabel.prices.map(function (item) {
+        //         var str = "";
+        //         if (item.id == -1) {
+        //             str += "<div class='active'>" + item.name + "</div>"
+        //         } else {
+        //             str += "<div>" + item.name + "</div>";
+        //         }
+        //         return str
+        //     })
+        // });
+        // $(".box .right").children().eq(4).html(function () {
+        //     return AllLabel.orders.map(function (item) {
+        //         var str = "";
+        //         if (item.id == 0) {
+        //             str += "<div class='active'>" + item.name + "</div>"
+        //         } else {
+        //             str += "<div>" + item.name + "</div>";
+        //         }
+        //         return str
+        //     })
+        // });
+        // function ajax() {
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open("GET", "https://apis.netstart.cn/bcomic/ClassPage?styleId=-1&areaId=-1&isFinish=-1&order=0&pageNum=1&pageSize=39&isFree=-1");
+        //     xhr.send();
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.readyState === 4 && xhr.status === 200) {
+        //             // 获取服务器响应的文本内容数据
+        //             // console.log(xhr.responseText);
+        //             // 把json字符串转成json对象
+        //             var res = JSON.parse(xhr.responseText);
+        //             console.log(res);
+        //             // 获取目标数据
+        //             var data = res.data;
+        //             $(".content").innerHTML = data.map(function (item, index) {
+        //                 return '<div><img src="' + item.horizontal_cover + '" alt=""><p>' + item.title + '</p><span>完结 共' + item.total + ' 话</span></div>';
+        //             })
+        //             // $(".content").innerHTML = data.map(function (item, index) {
+        //             //     return '<div><img src="'+ item.horizontal_cover +'" alt=""><p>'+ item.title+'</p><span>更新至 '+ item.total +' 话</span></div>';
+        //             // })
+        //         }
+        //     }
+        // }
+        // // ajax();
+        // 初始化
+        var data = {
+            styleId: -1,
+            areaId: -1,
+            isFinish: -1,
+            order: 0,
+            isFree: -1
+        }
+        function ajax(data) {
+            $.ajax({
+                type: "GET",
+                url: "https://apis.netstart.cn/bcomic/ClassPage",
+                data,
+                beforeSend: function () {
+                    $(".content").html(function () {
+                        return '<div class="no-find"><img src="./images/sample.gif" alt=""></div>';
+                    })
+                },
+                success: function (res) {
+                    console.log("success回调函数");
+                    console.log("res=>", res);
+                    var data = res.data;
+                    $(".content").html(function () {
+                        var str = "";
+                        return data.map(function (item, index) {
+                            if (item.is_finish == 0) {
+                                str = '<div><a href="https://manga.bilibili.com/detail/mc' + item.season_id + '?from=manga_index"><img src="' + item.vertical_cover + '" alt=""><p>' + item.title + '</p><span>更新至 ' + item.total + ' 话</span></a></div>';
+                            } else {
+                                str = '<div><a href="https://manga.bilibili.com/detail/mc' + item.season_id + '?from=manga_index"><img src="' + item.vertical_cover + '" alt=""><p>' + item.title + '</p><span>完结 共' + item.total + ' 话</span></a></div>';
+                            }
+                            return str;
+                        })
+                    });
+                    if ($(data).length == 0) {
+                        $(".content").html(function () {
+                            return '<div class="no-find"><img src="./images/no-find.png" alt=""></div>'
+                        });
+                    }
+                },
+                // 修改callback对应的函数名名称
+                jsonpCallback: "fn"
+            })
+        }
+        ajax(data)
+
+
+        $(".right").children().eq(0).on("click", "div", function (e) {
+            $(".list1").eq(0).children().removeClass("active");
+            $(e.target).addClass("active");
+            var index = $(e.target).index();
+            data.styleId = AllLabel.styles[index].id;
+            console.log(data);
+            ajax(data);
+        })
+        $(".right").children().eq(1).click(function (e) {
+            if ($(e.target).prop("nodeName") == "DIV") {
+                $(".list1").eq(1).children().removeClass("active");
+                $(e.target).addClass("active");
+                var index = $(e.target).index();
+                data.areaId = AllLabel.areas[index].id;
+                ajax(data);
+            }
+            console.log("idjk");
+        })
+        $(".right").children().eq(2).click(function (e) {
+            if ($(e.target).prop("nodeName") == "DIV") {
+                $(".list1").eq(2).children().removeClass("active");
+                $(e.target).addClass("active");
+                var index = $(e.target).index();
+                data.isFinish = AllLabel.status[index].id;
+                ajax(data);
+            }
+            console.log("idjk");
+        })
+        $(".right").children().eq(3).click(function (e) {
+            if ($(e.target).prop("nodeName") == "DIV") {
+                $(".list1").eq(3).children().removeClass("active");
+                $(e.target).addClass("active");
+                var index = $(e.target).index();
+                data.order = AllLabel.prices[index].id;
+                ajax(data);
+            }
+            console.log("idjk");
+        })
+        $(".right").children().eq(4).click(function (e) {
+            if ($(e.target).prop("nodeName") == "DIV") {
+                $(".list1").eq(4).children().removeClass("active");
+                $(e.target).addClass("active");
+                var index = $(e.target).index();
+                data.isFree = AllLabel.orders[index].id;
+                ajax(data);
+                
+            }
+            console.log("idjk");
+        })
     </script>
-  </body>
+</body>
+
 </html>
