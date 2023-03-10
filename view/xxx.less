@@ -1,0 +1,22 @@
+.card {
+    background-color: red;
+    width: 200px;
+
+    img {
+        width: 100%;
+        display: block ;
+        // vertical-align: middle;
+
+    }
+    // 包含关系 => 后代选择器 （空格）
+    .title {
+        color: red;
+
+        // & 代表没有空格
+        &:hover {
+            background-color: yellow;
+            color: aquamarine;
+            border: 2px solid red;
+        }
+    }
+}

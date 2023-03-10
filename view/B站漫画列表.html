@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- <ul>
+    <li>全部</li>
+    <li>全部</li>
+    <li>全部</li>
+    <li>全部</li>
+</ul> -->
+
+    <section class="all-label"></section>
+    <ul class="list"></ul>
+
+    <script>
+      // console.log($);
+      //  测试参数
+      var query = {
+        styleId: -1,
+        areaId: -1,
+        isFinish: -1,
+        order: 0,
+        pageNum: 1,
+        pageSize: 39,
+        isFree: -1,
+      };
+
+      // 插入元素 name中文名, list数组, key查询的键名
+      function generateLabelList(name, list, key, value) {
+        // 渲染地区
+        var $ulDom = $("<ul></ul>");
+        $ulDom.append($("<li class='title'>" + name + "</li>"));
+        $ulDom.append(
+          $(
+            "<li class='active' data-id=" +
+              value +
+              " data-key=" +
+              key +
+              ">" +
+              "全部" +
+              "</li>"
+          )
+        );
+        list.forEach(function (element, index) {
+          $ulDom.append(
+            $(
+              "<li data-id=" +
+                element.id +
+                " data-key=" +
+                key +
+                ">" +
+                element.name +
+                "</li>"
+            )
+          );
+        });
+
+        // console.log($ulDom);
+        $("section.all-label").append($ulDom);
+      }
+
+      //   获取所有分类
+      $.get("https://apis.netstart.cn/bcomic/AllLabel", function (res) {
+        console.log(res.data);
+
+        // 生成多有的labels
+        generateLabelList("题材", res.data.styles, "styleId", -1);
+        generateLabelList("地区", res.data.areas, "areaId", -1);
+        generateLabelList("进度", res.data.status, "isFinish", -1);
+        generateLabelList("收费", res.data.prices, "isFree", -1);
+        generateLabelList("排序", res.data.orders, "order", 0);
+
+        // 给生成的li添加点击时间
+        $(".all-label ul li").click(function () {
+          //   console.log($(this).data("key"), $(this).data("id"));
+          query[$(this).data("key")] = $(this).data("id");
+
+          //   console.log(query);
+
+          //   $(this)自己添加高亮 兄弟取消高亮
+          $(this).addClass("active").siblings().removeClass("active");
+
+          $(".list").html("");
+          //  获取列表
+          $.get("https://apis.netstart.cn/bcomic/ClassPage", query, function (res) {
+            // console.log(res.data);
+            res.data.forEach(function (ele) {
+              $(".list").append("<li>" + ele.title + "</li>");
+            });
+          });
+        });
+      });
+
+      //  获取列表
+      $.get("https://apis.netstart.cn/bcomic/ClassPage", query, function (res) {
+        // console.log(res.data);
+        res.data.forEach(function (ele) {
+          $(".list").append("<li>" + ele.title + "</li>");
+        });
+      });
+    </script>
+  </body>
+</html>
