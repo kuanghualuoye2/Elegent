@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="拼图.css" />
+</head>
+
+<body>
+  <section class="stage"></section>
+  <script>
+    var level = 3;
+    var n = 0;
+    function Card(index) {
+      this.origin = index;
+      this.current = index;
+    }
+
+    Card.prototype.show = function () {
+      this.node = document.createElement("div");
+
+      this.node.style.backgroundPosition =
+        (this.origin % level) * -100 +
+        "px " +
+        Math.floor(this.origin / level) * -200 +
+        "px";
+
+      this.node.setAttribute("draggable", "true");
+      document.querySelector(".stage").append(this.node);
+    };
+
+    Card.prototype.updatePos = function () {
+      this.node.style.left = (this.current % level) * 100 + "px";
+      this.node.style.top = Math.floor(this.current / level) * 200 + "px";
+    };
+
+    // 初始创建 cards
+    var cards = new Array(level * level).fill(undefined).map(function (e, i) {
+      return new Card(i);
+    });
+
+    cards.forEach(function (o, i, array) {
+      // 显示
+      o.show();
+      // 位置
+      o.updatePos();
+
+      // 事件
+      o.node.ondragstart = function (event) {
+        // console.log("拖", this, o, i);
+        event.dataTransfer.setData("index", i);
+      };
+
+      o.node.ondragover = function (event) {
+        event.preventDefault();
+      };
+      o.node.ondrop = function (event) {
+        // console.log("传值", event.dataTransfer.getData("index"));
+        // console.log("放", this, o, i);
+        // console.log(array[event.dataTransfer.getData("index")], o);
+        // 交换current
+        var drag = array[event.dataTransfer.getData("index")];
+        var tmp = drag.current;
+        n++
+        drag.current = o.current;
+        o.current = tmp;
+        if (checkIsSuccess()) {
+            setTimeout(() => {
+              window.alert("成功：总共用了" + n +  "步骤");
+              n = 0;
+            }, 1000);
+          }
+
+        // 更新视图位置
+        drag.updatePos();
+        o.updatePos();
+      };
+    });
+    function checkIsSuccess() {
+        var cardEls = Array.prototype.slice.call(document.querySelectorAll(".stage>div"));
+        console.log(cardEls);
+        return cardEls.every(function (el,i) {
+          console.log(cards.origin);
+          return cards[i].origin === cards[i].current;
+        });
+      }
+  </script>
+</body>
+
+</html>

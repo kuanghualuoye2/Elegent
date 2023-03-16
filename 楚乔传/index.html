@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .box{
+        margin-top: 200px;
+        width: 100px;
+        height: 100px;
+        position: relative;
+    }
+    .box .img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: all 1s;
+        transform-origin: 100% 0;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .box .img , .top{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 99;
+        background-image: url(./images/1.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    /* .box:hover .img:nth-child(1){
+        z-index: 99;
+        transform: rotate(0deg);
+    } */
+    .box:hover .img:nth-child(2){
+        background-image: url(./images/2.jpg);
+        transform: translateX(-200px);
+        /* transform: rotate(60deg); */
+    }
+    .box:hover .img:nth-child(3){
+        background-image: url(./images/3.jpg);
+        transform:translate(-150px,-150px);
+    }
+    .box:hover .img:nth-child(4){
+        background-image: url(./images/4.jpg);
+        transform:translateY(-200px);
+    }
+    .box:hover .img:nth-child(5){
+        background-image: url(./images/5.jpg);
+        transform:translate(150px,-150px);
+    }
+    .box:hover .img:nth-child(6){
+        background-image: url(./images/6.jpg);
+        transform:translateX(200px);
+    }
+    .show{
+        width: 100%;
+        height: 100%;
+        /* position: absolute; */
+        border-radius: 50%;
+        /* top: 0;
+        left: 0; */
+        box-shadow: inset 0px 0px 0px 7px rgba(122, 224, 255, 0.536);
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="top img">
+            <div class="show"></div>
+        </div>
+        <div class="img" src="./2.jpg" alt="">
+            <div class="show"></div>
+        </div>
+        <div class="img" src="./3.jpg" alt="">
+            <div class="show"></div>
+        </div>
+        <div class="img" src="./4.jpg" alt="">
+            <div class="show"></div>
+        </div>
+        <div class="img" src="./5.jpg" alt="">
+            <div class="show"></div>
+        </div>
+        <div class="img" src="./6.jpg" alt="">
+            <div class="show"></div>
+        </div>
+    </div>
+</body>
+
+</html>
