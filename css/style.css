@@ -592,6 +592,8 @@ h1, h2, h3, h4, h5,
 
 /* Blocks */
 .header-bar {
+  overflow-y: scroll;
+  border-left: 2px solid rgb(156, 156, 156);
   float: left;
   width: 250px;
   height: 100vh;
@@ -603,7 +605,21 @@ h1, h2, h3, h4, h5,
   text-align: left;
   position: fixed;
   left: 0;
-  top: 0; }
+  top: 0; 
+}
+.header-bar::-webkit-scrollbar{
+  width: 5px;
+  border-radius: 8px;
+}
+.header-bar::-webkit-scrollbar-track {
+  /* -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5); */
+  background-color: rgb(198, 198, 198);
+}
+/* 滚动条滑块 */
+.header-bar::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgb(164, 240, 249);
+}
   @media (max-width: 991.98px) {
     .header-bar {
       width: 100%;
