@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box">
+      <div class="front">front</div>
+      <div class="back">back</div>
+      <div class="left">left</div>
+      <div class="right">right</div>
+      <div class="top">top</div>
+      <div class="bottom">bottom</div>
+    </div>
+
+    <style>
+      body {
+        perspective: 500px;
+        /* 透视 眼睛距离观察平面的距离 Z */
+        perspective-origin: 50% 50%;
+        /* 观察面的位置 */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightgray;
+        height: 100vh;
+      }
+
+      .box {
+        margin: 150px;
+        width: 100px;
+        height: 100px;
+        background-color: rgba(88, 88, 88, 0.5);
+
+        position: relative;
+        transform-style: preserve-3d;
+
+        /* transform: rotateY(45deg) rotateX(45deg); */
+        transform: rotateY(45deg);
+      }
+
+      .box * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .box .front {
+        background-color: lightblue;
+        transform: translateZ(50px);
+      }
+      .box .back {
+        background-color: lightcoral;
+        transform: translateZ(-50px);
+      }
+      .box .left {
+        background-color: rgb(147, 240, 128);
+        transform: rotateY(-90deg) translateZ(50px);
+      }
+      .box .right {
+        background-color: rgb(225, 47, 207);
+        transform: rotateY(90deg) translateZ(50px);
+      }
+
+      .box .top {
+        background-color: rgb(240, 227, 128);
+        transform: rotateX(90deg) translateZ(50px);
+      }
+      .box .bottom {
+        background-color: rgb(47, 204, 225);
+        transform: rotateX(-90deg) translateZ(50px);
+      }
+    </style>
+  </body>
+</html>

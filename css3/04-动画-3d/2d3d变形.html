@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="box">
+      <div class="small"></div>
+    </div>
+    <style>
+      body {
+        perspective: 500px;
+      }
+      .box {
+        margin: 150px;
+        width: 100px;
+        height: 100px;
+        background-color: rgba(255, 81, 81, 0.5);
+
+        position: relative;
+
+        transform-style: preserve-3d;
+        /* 表示所有子元素在3D空间中呈现。 */
+        /* perspective: 500px; */
+      }
+      .box .small {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(19, 194, 253, 0.542);
+
+        /* 2d */
+        /* transform-origin: left top; */
+
+        /* transform: rotate(45deg); */
+        /* transform: rotateX(45deg); */
+        /* transform: rotateY(45deg); */
+        /* transform: scale(1.5); */
+        /* transform: skew(45deg); */
+        /* transform: skewY(45deg); */
+        /* transform: translate(10px, 10px); */
+
+        /* 3d */
+        /* transform-origin: left top; */
+        /* transform: rotateY(45deg); */
+        /* transform: rotateX(45deg); */
+        /* transform: rotateZ(45deg); */
+
+        /* transform: scale(2) rotateX(45deg); */
+        transform: translateZ(-100px);
+      }
+    </style>
+  </body>
+</html>

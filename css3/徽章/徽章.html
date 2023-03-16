@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .circle{
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .circle .img img{
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .show{
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        border-radius: 50%;
+        top: 0;
+        left: 0;
+        box-shadow: inset 0px 0px 0px 10px rgba(255, 255, 255, 0.536);
+    }
+    .circle .mark{
+        transition: all 1s;
+        position: absolute;
+        top: 0;
+        left: -200px;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background-color: black;
+        color: aliceblue;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        box-sizing: border-box;
+        padding: 20px;
+        text-align: center;
+        opacity: 0;
+    }
+    .circle .mark h3{
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .circle:hover .mark{
+        top: 10px;
+        left: 10px;
+        opacity: 1;
+    }
+</style>
+<body>
+    <div class="circle ">
+        <div class="img">
+            <img src="http://gudh.github.io/ihover/dist/images/assets/1.jpg" alt="">
+            <div class="show"></div>
+        </div>
+        <div class="mark">
+            <h3>Heading here</h3>
+            <p>Description goes here</p>
+        </div>
+    </div>
+</body>
+</html>
