@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        position: relative;
+        margin: 0 auto;
+        margin-top: 50px;
+        width: 1000px;
+        height: 600px;
+        overflow: hidden;
+        background-color: rgb(250, 250, 250);
+        box-shadow: 0px 0px 20px rgb(207, 207, 207);
+    }
+
+    .box .content {
+        width: 800px;
+        /* height: 100%;
+        overflow: hidden; */
+        float: left;
+    }
+
+    .box .content .bigImg {
+        width: 800px;
+        height: 580px;
+        box-sizing: border-box;
+        padding: 20px;
+        padding-bottom: 0;
+    }
+
+    .box .bigImg img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .box .list {
+        position: relative;
+        width: 200px;
+        height: 100%;
+        float: left;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+
+    .box .list .listImg {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .box .list .listImg img {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .box .list .border {
+        position: absolute;
+        width: 180px;
+        height: 100px;
+        border: 5px solid rgb(213, 105, 105);
+        left: 5px;
+        top: 5px;
+        border-radius: 5px;
+        pointer-events: none;
+    }
+
+    .box .list .border .dot {
+        position: relative;
+        top: 30px;
+        left: -30px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-color: transparent;
+        border-width: 15px 15px 15px 15px;
+        border-right-color: rgb(213, 105, 105);
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="content">
+            <div class="bigImg">
+                <img src="./考核素材/images/t1.png" alt="">
+            </div>
+            <div class="bigImg">
+                <img src="./考核素材/images/t2.png" alt="">
+            </div>
+            <div class="bigImg">
+                <img src="./考核素材/images/t3.png" alt="">
+            </div>
+            <div class="bigImg">
+                <img src="./考核素材/images/t4.png" alt="">
+            </div>
+            <div class="bigImg">
+                <img src="./考核素材/images/t5.png" alt="">
+            </div>
+        </div>
+        <div class="list">
+            <div class="border">
+                <div class="dot"></div>
+            </div>
+            <div class="listImg">
+                <img src="./考核素材/images/t1.png" alt="">
+            </div>
+            <div class="listImg">
+                <img src="./考核素材/images/t2.png" alt="">
+            </div>
+            <div class="listImg">
+                <img src="./考核素材/images/t3.png" alt="">
+            </div>
+            <div class="listImg">
+                <img src="./考核素材/images/t4.png" alt="">
+            </div>
+            <div class="listImg">
+                <img src="./考核素材/images/t5.png" alt="">
+            </div>
+        </div>
+    </div>
+    <script src="./animate.js"></script>
+    <script>
+        // 第一题
+        var arr = [];
+        var i = 0;
+        function fn(num) {
+            arr = num.toString().split("");
+            for (var i = 0; i < arr.length; i++) {
+                if (arr.length == 1 && Number(arr[0]) <= 9) {
+                    return parseInt(arr[0]);
+                }
+                return console.log(parseInt(arr[i]) + fn(parseInt(arr[i + 1])));
+            }
+        }
+        console.log(fn(58));
+    </script>
+
+    <script>
+        // 第二题
+        var arr = [30, 20, 30, 20, 10, 20, 50, 75, 10];
+        var arr2 = [];
+        function foo() {
+            var arr3 = [];
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = (i + 1); j < arr.length; j++) {
+                    if (arr[i] == arr[j]) {
+                        arr2.push(arr[i]);
+                    }
+                }
+            }
+            for (var i = 0; i < arr2.length; i++) {
+                if (arr3.indexOf(arr2[i]) === -1) {
+                    //满足条件把那一项push进arr3数组中
+                    arr3.push(arr2[i])
+                }
+            }
+            return (arr3).sort();
+        }
+        foo();
+    </script>
+
+    <script>
+        // 第三题
+        var str = "https://item.taobao.com/item.html?a=1&b=2&c=&d=xxx&e";
+        // var reg = /^https:\/\/(\w)+\.(\w)+(\w)+\.com\/$/;
+        // var reg = /\?[(\w)+=(\w)+\&]+/;
+        function getUrlParam(str){
+            // return str.match(reg);
+            var str = str.split("?")[1];
+            var str2 =str.split("&");
+            var obj = {};
+            for (var i = 0; i < str2.length; i++) {
+                obj[str2[i].split("=")[0]] = str2[i].split("=")[1];
+            }
+            return obj;
+        };
+        // console.log();
+        console.log(getUrlParam(str))
+    </script>
+
+
+    <script>
+        // 第四题
+        // 获取相关dom
+        var bigImg = document.querySelectorAll(".content .bigImg");
+        var listImg = document.querySelectorAll(".list .listImg");
+        var content = document.querySelector(".content");
+        var border = document.querySelector(".border");
+        // 获取相关高度距离值
+        var bigImgtop = 580;
+        var listImgTop = 120;
+        // 轮播图索引号
+        var bigImgIndex = 1;
+        // 默认显示图片1
+        // bigImg.style.marginTop = -bigImgIndex * bigImgtop + "px";
+        for (var i = 0; i < listImg.length; i++) {
+            listImg[i].setAttribute("data-index", i);
+
+            listImg[i].onmouseover = function () {
+                var index = Number(this.getAttribute("data-index"));
+                bigImgIndex = index;
+                // console.log(index);
+                animate(border,{
+                    "top": listImgTop * bigImgIndex + 5
+                });
+                animate(content,{
+                    "margin-top": -bigImgtop * bigImgIndex 
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

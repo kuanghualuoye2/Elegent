@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <video
+      src="https://www.runoob.com/try/demo_source/movie.mp4"
+      controls="controls"
+      autoplay
+      muted
+      loop
+    ></video> -->
+    <!-- <img width="10" height="10" src="https://www.runoob.com/images/pulpit.jpg" alt="" /> -->
+    <!-- <img src="https://www.runoob.com/images/pulpit.jpg" alt="" /> -->
+
+    <!-- <video
+      src="https://www.runoob.com/try/demo_source/movie.mp4"
+      controls="controls"
+      muted
+      loop
+      poster="https://www.runoob.com/images/pulpit.jpg"
+    ></video> -->
+
+    <video src="https://www.runoob.com/try/demo_source/movie.mp4" controls>
+        <track srclang="en" src="./en.vtt"></track>
+        <track srclang="zh" src="./zh.vtt"></track>
+    </video>
+
+    <button onclick="videoEle.play()">播放</button>
+    <button onclick="videoEle.pause()">暂停</button>
+    <hr />
+    <input type="range" name="" id="" min="0" max="100" value="0" step="0.1" />
+
+    <script>
+      //   var videoEle = document.querySelector("video");
+      var videoEle = document.getElementsByTagName("video")[0];
+      var rangeEle = document.getElementsByTagName("input")[0];
+
+      //   videoEle 方法 属性 事件
+      //   方法
+      //   videoEle.play();
+      //   videoEle.pause();
+
+      //   属性
+
+      console.log(videoEle.paused);
+      //   setTimeout(() => {
+      //     console.log(videoEle.duration);
+      //   }, 3000);
+
+      videoEle.ondurationchange = function () {
+        console.log(videoEle.duration);
+        rangeEle.max = videoEle.duration;
+      };
+
+      videoEle.ontimeupdate = function () {
+        console.log(videoEle.currentTime);
+        rangeEle.value = videoEle.currentTime;
+      };
+
+      rangeEle.onchange = function (event) {
+        console.log(event.target.value);
+        videoEle.currentTime = event.target.value;
+      };
+
+      //   videoEle.buffered
+      // 一缓冲区域的片段
+      // videoEle.buffered.start(0)  某个片段开始时间
+      // videoEle.buffered.end(0） 某个片段结束时间
+    </script>
+
+    <audio src="https://www.runoob.com/try/demo_source/horse.ogg" controls></audio>
+  </body>
+</html>

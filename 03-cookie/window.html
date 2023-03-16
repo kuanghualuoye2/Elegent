@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div style="width: 2000px; height: 2000px">
+      <iframe src="http://m.baidu.com" frameborder="1"></iframe>
+      <iframe src="http://m.360.com" frameborder="1"></iframe>
+    </div> -->
+    <script>
+      console.log(window.frames);
+      console.log(window.length);
+      window.name = "xxx";
+      console.log(window.name);
+
+      console.log(window.innerWidth);
+      console.log(window.innerHeight);
+
+      console.log(window.outerWidth);
+      console.log(window.outerHeight);
+
+      console.log(window.pageXOffset);
+      console.log(window.pageYOffset);
+
+      console.log(window.screenLeft);
+      console.log(window.screenTop);
+
+      console.log(window.screenX);
+      console.log(window.screenY);
+    </script>
+    <p style="color: red">
+      大联吞官魂找，许等房，落我衣不郭乌匹快，一胜平的始爱法的文憾领略让行天一落松，们的挟希得是会，归韦张如就专蒲徨变，回仃可作爱感脱过韩主故挟，承而夫重一撒气公李德今罚快饮年负才变，承而只，惶夫魂洞忧，人杨沉在将着种亓之的以韩到又韩穿，自秦单尝罪看刑在仃，法。
+    </p>
+    <style>
+      p {
+        color: blue !important;
+      }
+    </style>
+    <button onclick="clickHandler()">btn</button>
+    <script>
+      var a = 10;
+      //   window.open("http://www.baidu.com", "_self");
+      //   window.open("http://www.baidu.com", "_parent");
+      //   window.open("http://www.baidu.com", "", "width=200, height=200px, left=100, top=100, location=0", true);
+
+      // window.open("http://www.baidu.com", "", "width=200, height=200px,");
+
+      //   var w = window.open("", "", "width=200, height=200px");
+      //   console.log(w);
+      //   w.document.write("hahaha");
+      //   w.alert("xxx");
+
+      //   w.moveTo(200, 100);
+      //   w.moveBy(50, 50);
+      //   w.resizeTo(100, 500);
+      //   w.resizeBy(50, 50);
+
+      //   w.close()
+
+      //   base64
+      console.log(btoa("123456bvc,?:"));
+      console.log(atob("MTIzNDU2YnZjLD86"));
+
+      function clickHandler() {
+        console.log(window.getSelection(), window.getSelection().toString());
+      }
+
+      console.log(document.querySelector("p").style.color);
+      console.log(window.getComputedStyle(document.querySelector("p")).color);
+    </script>
+
+    <input type="email" placeholder="请输入邮箱" oninput="emailInput()" />
+
+    <script>
+      function emailInput() {
+        // console.log(this, event);
+        console.log(event.target.value);
+        // 需要正则验证用户输入的邮箱 是否合规
+        // 红色背景和绿色背景
+        var reg = /.{6,}/;
+        // console.log(event.target.value.match(reg));
+
+        // console.log(reg.test(event.target.value));
+        if (reg.test(event.target.value)) {
+          event.target.style.backgroundColor = "green";
+        } else {
+          event.target.style.backgroundColor = "red";
+        }
+      }
+    </script>
+  </body>
+</html>

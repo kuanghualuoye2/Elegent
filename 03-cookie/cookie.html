@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      //   document.cookie = "xxx=yyy";
+      //   //   设置 "xxx=yyy"
+      //   document.cookie = "name=nick";
+      //   document.cookie = "name=nicholas";
+
+      //   键值对
+      //   域名 不能跨域名设置和访问 默认当前域名
+      //   路径 不同路径cookie隔离  www.baidu.com  tieba.baidu.com 默认当前文件所在路径
+      //   www.baidu.com/tieba/   www.baidu.com/wangpan/
+      //   过期时间 默认Session当前会话
+
+      // document.cookie = "name=nicholas; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/";
+      // document.cookie = "age=17; expires=Thu, 18 Dec 2043 12:00:00 GMT; path=/06-BOM/02/";
+
+      // function setCookie(key, value, path) {
+      //   document.cookie = key + "=" + value + "; path=" + path;
+      // }
+
+      // setCookie("xxx", "123");
+      // setCookie("yyy", "456", "/");
+
+      // setCookie("xxx", "123");
+
+      // 设置cookie
+      function setCookie(key, value, day, path) {
+        var d = new Date();
+        d.setDate(d.getDate() + day);
+
+        // console.log(d);
+
+        document.cookie = key + "=" + value + "; expires=" + d + "; path=" + path;
+      }
+
+      setCookie("xxx", "123", 3, "/");
+      setCookie("yyy", "456");
+
+      // 修改 重新设置
+      // setCookie("xxx", "000", 3, "/");
+
+      // 删除 时间修改为已过期
+      // setCookie("xxx", "000", -1, "/");
+
+      // 'yyy=456; xxx=123'
+      function getCookie(key) {
+        var arr = document.cookie
+          .split(";")
+          .map(function (e) {
+            return e.trim();
+          })
+          .map(function (e) {
+            return e.split("=");
+          });
+        // console.log(arr);
+        var tmp = arr.find(function (e) {
+          return e[0] === key;
+        });
+        // console.log(tmp[1]);
+        return tmp[1];
+      }
+      getCookie("yyy");
+    </script> -->
+
+    <!-- <script src="./js.cookie.min.js"></script>
+    <script>
+      // console.log(Cookies);
+      Cookies.set("zzz", "789", { expires: 7 });
+    </script> -->
+  </body>
+</html>

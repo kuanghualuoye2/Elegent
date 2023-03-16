@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label>
+      <input type="checkbox" name="" id="" />
+      <div class="box"></div>
+    </label>
+
+    <style>
+      /* input:checked {
+        width: 50px;
+        height: 50px;
+        background-color: blueviolet;
+      } */
+
+      input {
+        display: none;
+      }
+
+      input:checked + .box {
+        background-color: lightcoral;
+      }
+
+      .box {
+        width: 80px;
+        height: 30px;
+        background-color: lightblue;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+      }
+      .box::before {
+        content: "";
+        display: block;
+        width: 24px;
+        height: 24px;
+        background-color: white;
+        border-radius: 24px;
+        margin: 0 3px;
+        transition: all 0.3s;
+      }
+      input:checked + .box::before {
+        transform: translateX(50px);
+      }
+    </style>
+  </body>
+</html>
+
+<!-- https://www.17sucai.com/pins/demo-show?id=45017&st=LCMn5oiVm6RWH22NU8YITA&e=1677819885 -->

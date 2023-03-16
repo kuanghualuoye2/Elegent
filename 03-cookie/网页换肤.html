@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./js.cookie.min.js"></script>
+  </head>
+  <body>
+    <div class="box">
+      <h3>使觉不死尘，子以日。</h3>
+      <p>
+        以洪娇身范法生可司马颜，是才得是来大定哥惊他，于着快到订，法五极月贤入小其王也，领嗣了爱皇被惜我母死和定攻仍，雷量事，人马车览路韩畴帝非姑相，人战县俭司白其为来留样才我留韩，然力力落拢生力月面十以他即请交李，别卡至极明言洪对将在们在化愿轻相，你非人选之死。
+      </p>
+    </div>
+    <style>
+      .box {
+        width: 300px;
+        background-color: lightblue;
+      }
+
+      .box.dark {
+        background-color: rgb(49, 49, 49);
+      }
+      .box.dark h3,
+      .box.dark p {
+        color: white;
+      }
+
+      .box.huyan {
+        background-color: rgb(133, 181, 71);
+      }
+    </style>
+
+    <button onclick="changeMode('Default')">默认</button>
+    <button onclick="changeMode('huyan')">护眼</button>
+    <button onclick="changeMode('dark')">黑夜</button>
+
+    <script>
+      document.querySelector(".box").classList.add(Cookies.get("mode"));
+      function changeMode(mode) {
+        // console.log(mode);
+        document.querySelector(".box").className = "box";
+        if (mode) {
+          document.querySelector(".box").classList.add(mode);
+          Cookies.set("mode", mode, {
+            expires: 7,
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

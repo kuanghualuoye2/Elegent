@@ -1,0 +1,56 @@
+html {
+    font-size: 10px;
+}
+
+body {
+    background-color: rgb(45, 45, 45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.card {
+    display: flex;
+
+    ul.num,
+    ul.dd {
+        display: flex;
+        flex-wrap: wrap;
+        width: 7.2rem;
+        margin: 1rem;
+
+
+        li {
+            &.dot {
+                width: 2rem;
+                height: 2rem;
+                background-color: white;
+                margin: .2rem;
+                box-shadow: 0 0 .3rem 0 rgba(0, 0, 0, 0.34) inset;
+
+                transition: all .3s;
+
+                &.hide {
+                    opacity: 0;
+                    transform: scale(0.5);
+                }
+            }
+        }
+
+
+    }
+
+    ul.dd {
+        margin: 0;
+    }
+}

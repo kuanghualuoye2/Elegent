@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        position: relative;
+        width: 300px;
+        height: 350px;
+        float: left;
+        /* margin-left: 50px; */
+        border: 1px solid rgba(0, 0, 0, 0.108);
+        /* overflow: hidden; */
+        /* background-color: antiquewhite; */
+    }
+
+    .box .mask {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background-color: rgba(145, 209, 255, 0.434);
+        pointer-events: none;
+    }
+
+    .box .middle {
+        width: 300px;
+        height: 300px;
+    }
+
+    .box .middle img {
+        width: 100%;
+    }
+
+    .box .ul {
+        margin: 0 auto;
+        width: 250px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .box ul {
+        margin: 0;
+        width: 450px;
+        bottom: 0px;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .box ul li {
+        box-sizing: border-box;
+        width: 50px;
+        height: 50px;
+        float: left;
+        cursor: pointer;
+
+    }
+
+    .box ul li:hover {
+        border: 2px solid red;
+    }
+
+    .box .ul ul li img {
+        width: 100%;
+    }
+
+    .big {
+        margin-left: 100px;
+        width: 400px;
+        height: 400px;
+        background: brown;
+        float: left;
+        overflow: hidden;
+        border: 1px solid rgb(207, 207, 207);
+        display: none;
+    }
+
+    .big img {
+        width: 700px;
+    }
+
+    .box .left {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 25px;
+        font-size: 40px;
+        cursor: pointer;
+        z-index: 99;
+    }
+
+    .box .right {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 25px;
+        font-size: 40px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <div class="mask"></div>
+        <div class="middle"><img src="./images/middle/01.jpg" alt=""></div>
+        <div class="ul">
+            <ul class="small">
+                <li><img src="./images/small/01.jpg" alt=""></li>
+                <li><img src="./images/small/02.jpg" alt=""></li>
+                <li><img src="./images/small/03.jpg" alt=""></li>
+                <li><img src="./images/small/04.jpg" alt=""></li>
+                <li><img src="./images/small/05.jpg" alt=""></li>
+                <li><img src="./images/small/06.jpg" alt=""></li>
+                <li><img src="./images/small/07.jpg" alt=""></li>
+                <li><img src="./images/small/08.jpg" alt=""></li>
+                <li><img src="./images/small/09.jpg" alt=""></li>
+            </ul>
+        </div>
+        <div class="left">
+            < </div>
+                <div class="right"> > </div>
+        </div>
+        <div class="big"><img src="./images/big/01.jpg" alt=""></div>
+</body>
+<script>
+    //获取遮罩层
+    var mask = document.querySelector(".mask");
+    //获取middle
+    var middle = document.querySelector(".middle");
+    //获取middle图片
+    var middleImg = document.querySelector(".middle img");
+    // 获取left
+    var left = document.querySelector(".left");
+    // 获取right
+    var right = document.querySelector(".right");
+    // 获取ul
+    var ul = document.querySelector("ul");
+    //获取li
+    var liImg = document.querySelectorAll("li img");
+    // 获取放大图片
+    var big = document.querySelector(".big");
+    var bigImg = document.querySelector(".big img");
+    var n = 0;
+    middle.onmousemove = function (e) {
+        // console.log("X=>", e.pageX);
+        // console.log("Y=>", e.pageY);
+        var x = e.offsetX - 130 / 2;
+        var y = e.offsetY - 190 / 2;
+        if (e.offsetX >= 65 && e.offsetX <= 215) {
+            mask.style.left = e.pageX - 75 + "px";
+            bigImg.style.marginLeft = -2 * x  + "px";
+        }
+        if (e.offsetY >= 65 && e.offsetY <= 215) {
+            mask.style.top = e.pageY - 75 + "px";
+            bigImg.style.marginTop = -2 * y - 65+ "px";
+        }
+        big.style.display = "block";
+        middle.onmouseout = function(){
+            big.style.display = "none";
+        }
+    }
+    left.onclick = function () {
+        if (ul.offsetLeft > -200) {
+            n -= 50;
+            ul.style.marginLeft = n + "px";
+        }
+    }
+    right.onclick = function () {
+        if (ul.offsetLeft < 0) {
+            n += 50;
+            ul.style.marginLeft = n + "px";
+        }
+    }
+    for (var i = 0; i < liImg.length; i++) {
+        liImg[i].setAttribute("index", (i + 1));
+        liImg[i].onclick = function () {
+            middleImg.src = "./images/middle/0" + this.getAttribute("index") + ".jpg";
+            bigImg.src = "./images/big/0" + this.getAttribute("index") + ".jpg";
+            console.log(this);
+        }
+    }
+    console.log(bigImg);
+</script>
+
+</html>

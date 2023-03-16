@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="数组点阵时钟.css" />
+  </head>
+  <body>
+    <div class="card">
+      <!-- <ul class="num">
+        <li class="dot">1</li>
+        <li class="dot">1</li>
+        <li class="dot">1</li>
+        <li class="dot">1</li>
+        <li class="dot">0</li>
+        <li class="dot">0</li>
+      </ul> -->
+    </div>
+
+    <script>
+      var map = [
+        [1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1], // 0
+        [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1], // 1
+        [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1], // 2
+        [1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1], // 3
+        [1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1], // 4
+        [1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1], // 5
+        [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1], // 6
+        [1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1], // 7
+        [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1], // 8
+        [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1], // 9
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0], // dd
+      ];
+      //   var dd = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0];
+
+      // 给小于10的添加0
+      var padNum = function (n) {
+        return n >= 10 ? String(n) : "0" + n;
+      };
+
+      // 点的显示与隐藏
+      var show = function (n, className) {
+        var ul = document.createElement("ul");
+        ul.classList.add(className);
+
+        map[n].forEach(function (ele) {
+          var li = document.createElement("li");
+          li.classList.add("dot");
+          if (!ele) {
+            li.classList.add("hide");
+          }
+          ul.append(li);
+        });
+        document.querySelector(".card").append(ul);
+      };
+
+      var updataNum = function (numEle, n) {
+        // var numEle = document.querySelector(".num");
+        // console.log(numEle);
+        var dotEle = numEle.querySelectorAll(".dot");
+        // console.log(dotEle);
+        dotEle.forEach(function (element, index) {
+          element.classList.remove("hide");
+          if (map[n][index]) {
+            // console.log(map[n]);
+            element.classList.remove("hide");
+          } else {
+            element.classList.add("hide");
+          }
+        });
+      };
+
+      // 获取时间
+      var getTime = function () {
+        var now = new Date();
+        var hh = now.getHours();
+        var mm = now.getMinutes();
+        var ss = now.getSeconds();
+        return [padNum(hh), padNum(mm), padNum(ss)];
+      };
+
+      // 渲染所有的数字
+      var time = getTime();
+      time.forEach(function (element, index) {
+        // console.log(element[0]);
+        if (index) {
+          show(10, "dd");
+        }
+        show(element[0], "num");
+        show(element[1], "num");
+      });
+
+      setInterval(function () {
+        // console.log(time[2]);
+        var time = getTime();
+        time.forEach(function (e, i) {
+          var numEles = document.querySelectorAll(".num");
+          updataNum(numEles[i * 2], e[0]);
+          updataNum(numEles[i * 2 + 1], e[1]);
+        });
+      }, 1000);
+
+      window.onresize = function (event) {
+        // console.log(window.innerWidth);
+        // if (window.innerWidth <= 700) {
+        //   document.querySelector("html").style.fontSize = "2px";
+        // } else {
+        //   document.querySelector("html").style.fontSize = "10px";
+        // }
+
+        document.querySelector("html").style.fontSize = window.innerWidth / 170 + "px";
+      };
+    </script>
+  </body>
+</html>
