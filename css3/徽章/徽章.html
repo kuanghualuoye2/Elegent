@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <style>
-    .circle{
+    .card{
         position: relative;
         width: 200px;
         height: 200px;
@@ -15,7 +15,7 @@
         margin: 0 auto;
         overflow: hidden;
     }
-    .circle .img img{
+    .card .img img{
         display: block;
         width: 100%;
         height: 100%;
@@ -29,7 +29,7 @@
         left: 0;
         box-shadow: inset 0px 0px 0px 10px rgba(255, 255, 255, 0.536);
     }
-    .circle .mark{
+    .card .mark{
         transition: all 1s;
         position: absolute;
         top: 0;
@@ -48,19 +48,19 @@
         text-align: center;
         opacity: 0;
     }
-    .circle .mark h3{
+    .card .mark h3{
         margin: 0;
         text-transform: uppercase;
         letter-spacing: 2px;
     }
-    .circle:hover .mark{
+    .card:hover .mark{
         top: 10px;
         left: 10px;
         opacity: 1;
     }
 </style>
 <body>
-    <div class="circle ">
+    <div class="card ">
         <div class="img">
             <img src="http://gudh.github.io/ihover/dist/images/assets/1.jpg" alt="">
             <div class="show"></div>

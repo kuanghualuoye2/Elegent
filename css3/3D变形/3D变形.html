@@ -9,8 +9,14 @@
     <script src="./jquery-3.6.3.min.js"></script>
     <title>Document</title>
 </head>
+<style>
+    /* .distortion .content{
+        distortion-sizing: border-distortion;
+        padding: 50px;
+    } */
+</style>
 <body class="">
-    <div class="box">
+    <div class="distortion">
         <div class="card">
             <div class="title active">
                 <span></span>
@@ -40,14 +46,14 @@
         </div>
     </div>
     <script>
-        // $(".box .card .title").on("click",function () {
+        // $(".distortion .card .title").on("click",function () {
         //     $(".active").removeClass("active").parent().css({
         //         animation:" mymove 1s",
         //     }).next().addClass("prev");
         //     $(this).addClass("active");
         //     console.log($(this).index());
         // })
-        $(".box .card .title").on("click",function () {
+        $(".distortion .card .title").on("click",function () {
             $(".active").removeClass("active").parent().addClass("animation").siblings().removeClass("animation");
             $(this).addClass("active").parent().addClass("prev").siblings().removeClass("prev");
             console.log($(this).index());

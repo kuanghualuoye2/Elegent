@@ -1,0 +1,62 @@
+html,body{
+    // display: grid;
+    // height: 100%;
+    // width: 100%;
+    // background: linear-gradient(315deg,#ffffff 0%,#d7e1ec 64%);
+    // place-items: center;
+}
+
+.box{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    .button{
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        border-radius: 50px;
+        overflow: hidden;
+        transition: all 0.5s ease-out;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        .icon{
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 60px;
+            font-size: 24px;
+            transition: all 0.5s ease-out;
+        }
+        span{
+            display: inline-block;
+            width: 110px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.5s;
+        }
+    }
+    .button:hover{
+        width: 200px;
+    }
+    .button:nth-of-type(1):hover .icon{
+        background: #4267B2;
+    } 
+    .button:nth-of-type(2):hover .icon{
+        background: #1da1f2;
+    } 
+    .button:nth-of-type(3):hover .icon{
+        background: #e1306c;
+    } 
+    .button:nth-of-type(4):hover .icon{
+        background: #333;
+    } 
+    .button:nth-of-type(5):hover .icon{
+        background: #ff0000;
+    } 
+}

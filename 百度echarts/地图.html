@@ -15,17 +15,17 @@
     margin: 0;
     padding: 0%;
   }
-  #main{
+  .main{
     width: 800px;
     height: 500px;
   }
 </style>
 <body>
-  <div id="main"></div>
+  <div class="main"></div>
   <script>
-    console.log(document.querySelector("#main"));
+    console.log(document.querySelector(".main"));
     // 1. 实例化对象
-    var myChart = echarts.init(document.querySelector("#main"),"dark");
+    var myChart = echarts.init(document.querySelector(".main"),"dark");
     // 2. 指定配置和数据
     var geoCoordMap = {
       上海: [121.4648, 31.2891],

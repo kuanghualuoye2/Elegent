@@ -1,0 +1,97 @@
+body{
+    background: rgb(119, 115, 110);
+}
+
+.box{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    .banner{
+        list-style: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 800px;
+        height: 200px;
+        .swiperitem{
+            float: left;
+            position: absolute;
+            transition: all 0.3s ease-out;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 200px;
+            box-shadow: 0px 0px 15px black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .def{
+            opacity: 0;
+            z-index: -1;
+        }
+        .a{
+            opacity: 1;
+            z-index: 1;
+            transform: perspective(500px) scale(1) translateX(0px); 
+        }
+
+        .c{
+            opacity: 1;
+            z-index: 1;
+            transform: perspective(500px) scale(1) translateX(400px); 
+        }
+
+        .b{
+            opacity: 1;
+            z-index: 999;
+            transform: perspective(500px) scale(1.2) translateX(170px); 
+        }
+        a:nth-of-type(1){
+            display: block;
+            position: absolute;
+            top: 50%;
+            left:0;
+            transform:translate(0,-50%);
+            z-index: 9999;
+            color: #ccc;
+        }
+        a:nth-of-type(2){
+            display: block;
+            position: absolute;
+            top: 50%;
+            right:0;
+            transform:translate(0,-50%);
+            z-index: 9999;
+            color: #ccc;
+        }
+    }
+    
+    .banner:hover{
+        cursor: pointer;
+    }
+
+    .circle{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,1400%);
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+        li{
+            list-style: none;
+            width: 30px;
+            height: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 10px #ccc;
+        }
+        // li:nth-of-type(1){
+        //    background-color: rgb(235, 40, 40);
+        // }
+        .current {
+            background-color: rgb(235, 40, 40);
+        }
+    }
+
+}

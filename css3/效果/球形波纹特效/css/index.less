@@ -1,0 +1,56 @@
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border: 5px soild #fff;
+    box-shadow: 0 0 0 5px #4973ff;
+    border-radius: 50%;
+
+    .wave {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #4973ff;
+        border-radius: 50%;
+        box-shadow: inset 0 0 50px rgba(0, 0, 0, .3);
+        overflow: hidden;
+    }
+
+    .wave::before,
+    .wave::after {
+        content: "";
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -75%);
+        background-color: black;
+    }
+
+    .wave::before {
+        border-radius: 45%;
+        background-color: rgba(255, 255, 255, .1);
+        animation: app 5s linear infinite;
+    }
+
+    .wave::after {
+        border-radius: 40%;
+        background-color: rgba(255, 255, 255, .3);
+        animation: app 8s linear infinite;
+    }
+}
+
+@keyframes app {
+    0% {
+        transform: translate(-50%, -75%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -75%) rotate(360deg);
+    }
+
+}

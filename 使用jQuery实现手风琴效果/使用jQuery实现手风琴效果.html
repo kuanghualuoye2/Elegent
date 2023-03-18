@@ -101,14 +101,6 @@
 
     <script src="js/jquery.min.js"></script>
     <script>
-        /* 思路
-        1)鼠标移入
-            1>宽度改为400,其他它改成160
-            2>隐藏文字
-        2)鼠标移出
-            1>显示文字
-            2>宽度改为200
-        */
         $(".main ul li").each(function (index , dom) {
             $(dom).mouseover(function(){
                 $(".main ul li").children(".desc").stop().fadeIn(500);

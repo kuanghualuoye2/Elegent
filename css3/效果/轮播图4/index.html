@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/minireset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="banner">
+            <li class="swiperitem b">
+                <a href="Javascript:;"><img src="./image/1.jpg" alt=""></a>
+            </li>
+            <li class="swiperitem c">
+                <a href="Javascript:;"><img src="./image/2.jpg" alt=""></a>
+            </li>
+            <li class="swiperitem def">
+                <a href="Javascript:;"><img src="./image/3.jpg" alt=""></a>
+            </li>
+            <li class="swiperitem def">
+                <a href="Javascript:;"><img src="./image/4.jpg" alt=""></a>
+            </li>
+            <li class="swiperitem a">
+                <a href="Javascript:;"><img src="./image/5.jpg" alt=""></a>
+            </li>
+            <a class="aowwl" href="Javascript:;"><i class="fa fa-chevron-left fa-2x"></i></a>
+            <a class="aowwr" href="Javascript:;"><i class="fa fa-chevron-right fa-2x"></i></a>
+        </ul>
+        <ol class="circle">
+        </ol>
+    </div>
+    <script>
+        window.onload = function() {
+            var box = document.querySelector('.box');
+            var banner = document.querySelector('.banner');
+            var li = banner.querySelectorAll('.swiperitem');
+            var circle = document.querySelector('.circle');
+            var aowwl = document.querySelector('.aowwl');
+            var aowwr = document.querySelector('.aowwr');
+            var index = 0;
+            var timer;
+            swiperplay();
+            aowwr.onclick = function() {
+                index++;
+                if (index == li.length) {
+                    index = 0;
+                }
+                changePoint();
+                swiperitem();
+            }
+
+            aowwl.onclick = function() {
+                if (index == 0) {
+                    index = li.length;
+                }
+                index--;
+                changePoint()
+                swiperitem();
+            }
+
+            function swiperplay() {
+                timer = setInterval(function() {
+                    aowwr.click();
+                }, 3000)
+            }
+            // 点匹配
+            function swiperAll() {
+                swiperitem();
+                changePoint();
+            }
+            // 图片移动
+            function swiperitem() {
+                for (var i = 0; i < li.length; i++) {
+                    li[i].className = 'swiperitem def';
+                }
+                if (index === 0) {
+                    li[index].className = 'swiperitem b';
+                    li[li.length - 1].className = 'swiperitem a';
+                    li[index + 1].className = 'swiperitem c';
+                } else if (index === li.length - 1) {
+                    li[index].className = 'swiperitem b';
+                    li[index - 1].className = 'swiperitem a';
+                    li[0].className = 'swiperitem c';
+                } else {
+                    li[index].className = 'swiperitem b';
+                    li[index - 1].className = 'swiperitem a';
+                    li[index + 1].className = 'swiperitem c';
+                }
+            }
+            for (var i = 0; i < li.length; i++) {
+                var list = document.createElement('li');
+                list.setAttribute('index', i);
+                circle.appendChild(list);
+                circle.children[0].className = 'current';
+            }
+            // 小圆点
+            function changePoint() {
+                for (var i = 0; i < circle.children.length; i++) {
+                    circle.children[i].className = '';
+                }
+                circle.children[index].className = 'current';
+            }
+            for (let i = 0; i < circle.children.length; i++) {
+                circle.children[i].onclick = function() {
+                    var indexd = this.getAttribute('index');
+                    index = Number(indexd);
+                    swiperAll();
+                }
+            }
+
+            box.onmouseover = function() {
+                clearInterval(timer);
+            }
+            box.onmouseleave = function() {
+                swiperplay();
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
