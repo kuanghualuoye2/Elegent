@@ -471,6 +471,7 @@ h1, h2, h3, h4, h5,
       opacity: 1;
       visibility: visible; }
   .site-mobile-menu .site-mobile-menu-header {
+    background-color: #cbdcf7;
     width: 100%;
     float: left;
     padding-left: 20px;
@@ -600,7 +601,7 @@ h1, h2, h3, h4, h5,
   min-height: 400px;
   overflow: auto;
   background: #fff;
-  background: #F5EEDC;
+  background-color: #cbdcf7;
   padding: 30px;
   text-align: left;
   position: fixed;
@@ -642,6 +643,9 @@ h1, h2, h3, h4, h5,
       display: inline-block;
       padding: 5px 10px;
       border: 4px solid #000; }
+      .header-bar .site-logo a img{
+        max-width: 60px !important;
+      }
   .header-bar .main-menu {
     
     margin-right: auto; }
