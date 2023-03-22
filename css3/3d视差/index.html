@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="cards">
+        <h3>Movies</h3>
+        <h1>Popular</h1>
+        <div class="box">
+            <div class="card card_one">
+                <div class="card_bg"></div>
+                <img class="card_img" src="./3dr_mono.png">
+                <div class="card_text">
+                    <p class="card_title">Princess Mononoke</p>
+                </div>
+            </div>
+            <div class="card card_two">
+                <div class="card_bg"></div>
+                <img class="card_img" src="./3dr_chihiro.png">
+                <div class="card_text">
+                    <p class="card_title">Spirited Away</p>
+                </div>
+            </div>
+            <div class="card card_three">
+                <div class="card_bg"></div>
+                <img class="card_img" src="./3dr_howlcastle.png">
+                <div class="card_text">
+                    <p class="card_title">Howl's Moving Castle</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(window).mousemove(function (e) {
+            // var x = (e.pageX - $(".cards")[0].offsetLeft);
+            // var y = e.pageY - $(".cards")[0].offsetTop;
+            var x = (e.pageX - $(".cards")[0].offsetLeft) - ($(".cards")[0].offsetWidth/2)
+            var y = e.pageY - $(".cards")[0].offsetTop - ($(".cards")[0].offsetHeight/2)
+            console.log("y=>",y);
+            console.log(x);
+            $(".cards").css({
+                transform:"rotateX("+ y/20 +"deg) rotateY("+ x/40 +"deg)" 
+            })
+            $(".cards .card .card_bg").css({
+                backgroundPosition: ""+ y/25 +"px "+ x/25 +"px"
+            })
+            $(".cards .card img").css({
+                transform: "translateX("+ x/25 +"px) translateY("+ (y/30) +"px)"
+            })
+    })
+</script>
+
+</html>
