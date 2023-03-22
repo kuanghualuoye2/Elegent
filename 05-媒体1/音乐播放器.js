@@ -12,33 +12,9 @@ var n = 0;
 var hrLeft = -240;
 //随机开关
 var flan = false;
-//防抖
-// function mydebounce(func, wait) {
-//     // 延时器标识符
-//     var timeoutId = null;
-//     // 使用一个变量,保存this上下文的对象
-//     var context = null;
-//     // 使用一个变量,保存实参列表
-//     var args = null;
-
-//     // 返回一个新函数
-//     return function () {
-//         // 把正确的this对象赋值给context变量
-//         context = this;
-//         // 把正确的arguments对象赋值给args变量
-//         args = arguments;
-
-//         // 清除上一个延时器
-//         window.clearTimeout(timeoutId);
-
-//         // 开启一个延时器
-//         timeoutId = window.setTimeout(function () {
-//             // 改变func函数内部this指向,并且传递参数
-//             func.apply(context, args);
-//         }, wait);
-//     }
-// }
-//
+var flag = true;
+//定时器
+var id = 0
 $(".box .list").on("click", function () {
     $(".box").addClass("flip").removeClass("backHome");
     console.log(this);
@@ -56,7 +32,7 @@ function title(arr, index) {
 }
 title(map, 0)
 // 显示当前时间与总时间
-function progress() {
+function progress(flag) {
     // 进度条
     // $("audio")[0].ontimeupdate = function () {
     // console.log(Math.floor($("audio")[0].currentTime));
@@ -72,9 +48,11 @@ function progress() {
     console.log($("#test")[0].duration);
     var atmm = Math.floor(atTime / 60 % 60);
     var atss = Math.floor(atTime % 60)
-    $(".progress hr").css({
-        left: hrLeft + (time * 240) / Math.floor($("audio")[0].duration)
-    })
+    if (flag) {
+        $(".progress hr").css({
+            left: hrLeft + (time * 240) / Math.floor($("audio")[0].duration)
+        })
+    }
     // 给小于10的添加0
     var padNum = function (n) {
         return n >= 10 ? String(n) : "0" + n;
@@ -164,7 +142,7 @@ $(".controls .next i").click(function () {
     $("audio")[0].ontimeupdate = function () {
         progress();
     }
-    $("audio")[0].ondurationchange = function(){
+    $("audio")[0].ondurationchange = function () {
         progress();
     }
     //更改标题
@@ -186,23 +164,24 @@ $(".box .home .controls .play i").click(function () {
 $("audio")[0].onloadedmetadata = function () {
     $(".progress").mousedown(function () {
         $(".progress").mousemove(function (e) {
+            flag = false;
             console.log(e.offsetX);
             $(".progress hr").css({
                 left: -240 + e.offsetX
             });
-            // function fn() {
-                // $("audio")[0].currentTime = parseInt($("audio")[0].duration * e.offsetX) / 240;
-            // }
-            // mydebounce(fn,400)
+            progress(flag)
+            clearTimeout(id);
+            id = setTimeout(function () {
+                flag = true;
+                $("audio")[0].currentTime = parseInt($("audio")[0].duration * e.offsetX) / 240;
+                progress(flag)
+            }, 1000);
         })
     })
     //清除事件
     $(".progress").mouseup(function (e) {
         $(".progress").off("mousemove");
-        // function fn() {
-                $("audio")[0].currentTime = parseInt($("audio")[0].duration * e.offsetX) / 240;
-        //     }
-        // mydebounce(fn(),400)
+        // $("audio")[0].currentTime = parseInt($("audio")[0].duration * e.offsetX) / 240;
     })
 }
 //渲染歌单
@@ -241,7 +220,7 @@ $(".brief").on("click", function (e) {
     $("audio")[0].ontimeupdate = function () {
         progress();
     }
-    $("audio")[0].ondurationchange = function(){
+    $("audio")[0].ondurationchange = function () {
         progress();
     }
     //更改标题
@@ -266,7 +245,7 @@ $(".random").on("click", function (e) {
     $("audio")[0].ontimeupdate = function () {
         progress();
     }
-    $("audio")[0].ondurationchange = function(){
+    $("audio")[0].ondurationchange = function () {
         progress();
     }
     //更改标题
