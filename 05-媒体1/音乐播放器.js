@@ -28,7 +28,7 @@ function title(arr, index) {
     var names = arr[index].indexOf("-");
     var songname = arr[index].indexOf(".m");
     $(".info h1").text(arr[index].slice(names + 1, songname));
-    $(".info h2").text(arr[index].slice(8, name));
+    $(".info h2").text(arr[index].slice(8, names));
 }
 title(map, 0)
 // 显示当前时间与总时间
@@ -48,11 +48,11 @@ function progress(flag) {
     console.log($("#test")[0].duration);
     var atmm = Math.floor(atTime / 60 % 60);
     var atss = Math.floor(atTime % 60)
-    if (flag) {
+    // if (flag) {
         $(".progress hr").css({
             left: hrLeft + (time * 240) / Math.floor($("audio")[0].duration)
         })
-    }
+    // }
     // 给小于10的添加0
     var padNum = function (n) {
         return n >= 10 ? String(n) : "0" + n;
@@ -110,6 +110,9 @@ $(".controls .prve i").click(function () {
     $("audio")[0].ontimeupdate = function () {
         progress();
     }
+    $("audio")[0].ondurationchange = function () {
+        progress();
+    }
     //更改标题
     title(map, n);
     // console.log(n);
@@ -147,10 +150,6 @@ $(".controls .next i").click(function () {
     }
     //更改标题
     title(map, n);;
-    // console.log(n);
-    // console.log($(".musicsource").prop("src"));
-
-    // console.log($("audio")[0].paused);
 });
 
 
@@ -164,18 +163,17 @@ $(".box .home .controls .play i").click(function () {
 $("audio")[0].onloadedmetadata = function () {
     $(".progress").mousedown(function () {
         $(".progress").mousemove(function (e) {
-            flag = false;
+            // flag = false;
             console.log(e.offsetX);
             $(".progress hr").css({
                 left: -240 + e.offsetX
             });
-            progress(flag)
-            clearTimeout(id);
-            id = setTimeout(function () {
-                flag = true;
+            // clearTimeout(id);
+            // id = setTimeout(function () {
+            //     flag = true;
                 $("audio")[0].currentTime = parseInt($("audio")[0].duration * e.offsetX) / 240;
-                progress(flag)
-            }, 1000);
+            //     progress(flag)
+            // }, 1000);
         })
     })
     //清除事件
@@ -200,7 +198,6 @@ $(".Playlist").html(function () {
         str += '<h4>' + e.slice(8, name) + '</h4>';
         str += '</div>';
         str += '</div>';
-        console.log(e);
         return str;
     })
 })
@@ -228,7 +225,6 @@ $(".brief").on("click", function (e) {
     //翻转
     $(".box").addClass("backHome");
 })
-console.log($(".box .home .cover img"));
 console.log(Math.floor(Math.random() * map.length))
 //随机歌曲
 $(".random").on("click", function (e) {
