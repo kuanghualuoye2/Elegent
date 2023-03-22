@@ -1031,7 +1031,8 @@ h5,
   /* background-size: cover; */
   background-attachment: fixed;
   float: right;
-  width: calc(100% - 253px);
+  transform: translateX(-3px);  
+  width: calc(100% - 250px);
   
 }
 
