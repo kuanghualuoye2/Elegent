@@ -12,6 +12,67 @@
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
+<style>
+    @keyframes an {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(10);
+        }
+    }
+
+    @keyframes an2 {
+        from {
+            transform: scale(10)
+        }
+        to {
+            transform: scale(0);
+        }
+    }
+
+    .buttonbox .but {
+        width: 200px;
+        transition: all 1s;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .buttonbox .btn {
+        border-radius: 10px;
+        display: inline-block;
+        width: 200px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        border: 1px solid red;
+        color: aliceblue;
+    }
+
+    .buttonbox .make {
+        position: absolute;
+        z-index: -1;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: aqua;
+        transform: translateX(0px) translateY(0px) scale(0);
+    }
+
+    .buttonbox .an {
+        animation: an .5s linear forwards;
+    }
+
+    .buttonbox .an2 {
+        animation: an2 .5s linear forwards;
+    }
+</style>
 
 <body>
     <div class="menu">
@@ -202,6 +263,36 @@
             </div>
         </div>
     </section>
+    <section class="buttonbox section">
+        <div class="container">
+            <h1 style="color:#dff;">按钮</h1>
+            <div class="row">
+                <div class="col-12">
+                    <div class="but">
+                        <span class="make"></span>
+                        <span class="btn">button</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var but = document.querySelector(".but")
+        var btn = document.querySelector(".btn");
+        var make = document.querySelector(".make");
+        btn.onmouseover = function (e) {
+            var x = e.pageX - but.offsetLeft;
+            var y = e.pageY - but.offsetTop
+            $(".make").css({
+                top: y - (make.clientWidth / 2) + "px",
+                left: x - (make.clientWidth / 2) + "px"
+            })
+            $(".make").removeClass("an2").addClass("an")
+            btn.onmouseleave = function (e) {
+                $(".make").addClass("an2").removeClass("an")
+            }
+        }
+    </script>
 </body>
 <script>
     var crossopen = document.querySelector('.cross');
@@ -210,7 +301,7 @@
     })
 </script>
 <script>
-    window.onload = function() {
+    window.onload = function () {
         var box = document.querySelector('.lb .box');
         var banner = document.querySelector('.lb .banner');
         var li = banner.querySelectorAll('.lb .swiperitem');
@@ -220,7 +311,7 @@
         var index = 0;
         var timer;
         swiperplay();
-        aowwr.onclick = function() {
+        aowwr.onclick = function () {
             index++;
             if (index == li.length) {
                 index = 0;
@@ -229,7 +320,7 @@
             swiperitem();
         }
 
-        aowwl.onclick = function() {
+        aowwl.onclick = function () {
             if (index == 0) {
                 index = li.length;
             }
@@ -239,7 +330,7 @@
         }
 
         function swiperplay() {
-            timer = setInterval(function() {
+            timer = setInterval(function () {
                 aowwr.click();
             }, 3000)
         }
@@ -281,21 +372,22 @@
             circle.children[index].className = 'current';
         }
         for (let i = 0; i < circle.children.length; i++) {
-            circle.children[i].onclick = function() {
+            circle.children[i].onclick = function () {
                 var indexd = this.getAttribute('index');
                 index = Number(indexd);
                 swiperAll();
             }
         }
 
-        box.onmouseover = function() {
+        box.onmouseover = function () {
             clearInterval(timer);
         }
-        box.onmouseleave = function() {
+        box.onmouseleave = function () {
             swiperplay();
         }
 
 
     }
 </script>
+
 </html>

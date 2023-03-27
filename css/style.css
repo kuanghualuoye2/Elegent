@@ -1228,6 +1228,7 @@ h5,
 .site-section-hero {
   position: relative;
   /* margin-top: 3px; */
+  /* background-attachment: fixed !important; */
 }
 
 .site-section-hero:before {
