@@ -1029,9 +1029,10 @@ h5,
 .main-content {
   background-image: url(../images/bg-2.png);
   /* background-size: cover; */
+  -webkit-background-attachment: fixed;
   background-attachment: fixed;
   float: right;
-  transform: translateX(-3px);  
+  /* transform: translateX(-3px);   */
   width: calc(100% - 250px);
   
 }
