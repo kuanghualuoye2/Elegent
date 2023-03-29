@@ -1,0 +1,35 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.Game {
+    position: relative;
+    border: 20px solid #f8bbd0;
+    background-color: #e52c6a;
+    width: 500px;
+    height: 500px;
+    margin: 15px auto;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fce4ec;
+        tr{
+            td {
+                position: relative;
+                background-size: 100% 100%;
+                border-radius: 50%;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                .snake {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
