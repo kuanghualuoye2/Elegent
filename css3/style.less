@@ -609,14 +609,16 @@ body {
                 left: 7px;
                 opacity: 1;
             }
+
             // 楚乔传
-            .box{
+            .box {
                 margin-top: 100px;
                 width: 100px;
                 height: 100px;
                 position: relative;
             }
-            .box .img{
+
+            .box .img {
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -627,7 +629,9 @@ body {
                 background-size: cover;
                 background-position: center;
             }
-            .box .img , .top{
+
+            .box .img,
+            .top {
                 width: 100%;
                 height: 100%;
                 position: absolute;
@@ -637,32 +641,38 @@ body {
                 background-size: cover;
                 background-position: center;
             }
+
             /* .box:hover .img:nth-child(1){
                 z-index: 99;
                 transform: rotate(0deg);
             } */
-            .box:hover .img:nth-child(2){
+            .box:hover .img:nth-child(2) {
                 background-image: url(./楚乔传/images/2.jpg);
                 transform: translateX(-150px);
                 /* transform: rotate(60deg); */
             }
-            .box:hover .img:nth-child(3){
+
+            .box:hover .img:nth-child(3) {
                 background-image: url(./楚乔传/images/3.jpg);
-                transform:translate(-100px,-100px);
+                transform: translate(-100px, -100px);
             }
-            .box:hover .img:nth-child(4){
+
+            .box:hover .img:nth-child(4) {
                 background-image: url(./楚乔传/images/4.jpg);
-                transform:translateY(-150px);
+                transform: translateY(-150px);
             }
-            .box:hover .img:nth-child(5){
+
+            .box:hover .img:nth-child(5) {
                 background-image: url(./楚乔传/images/5.jpg);
-                transform:translate(100px,-100px);
+                transform: translate(100px, -100px);
             }
-            .box:hover .img:nth-child(6){
+
+            .box:hover .img:nth-child(6) {
                 background-image: url(./楚乔传/images/6.jpg);
-                transform:translateX(150px);
+                transform: translateX(150px);
             }
-            .show{
+
+            .show {
                 width: 100%;
                 height: 100%;
                 /* position: absolute; */
@@ -784,6 +794,7 @@ body {
 
 section.yys {
     height: 400px;
+
     .container {
         display: flex;
         justify-content: center;
@@ -846,6 +857,7 @@ section.yys {
         transform: translate(0, -3%);
     }
 }
+
 @keyframes name {
     0% {
         transform: scale(1) translateY(0%);
@@ -1107,4 +1119,9 @@ section.yys {
     background-color: black;
     animation: mybuttom 1s ease infinite;
     border-radius: 50%;
+}
+
+.lazy {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
